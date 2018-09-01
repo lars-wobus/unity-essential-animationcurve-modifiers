@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace _Scripts.Filter
+namespace Essential.Animation.Curve.Modifiers.Filter.Editor
 {
     public abstract class AnimationCurveModifier : EditorWindow
     {

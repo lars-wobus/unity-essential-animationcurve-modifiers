@@ -1,8 +1,8 @@
 ﻿using System;
+using Essential.Animation.Curve.Modifiers.Filter.Data;
 using UnityEngine;
-using _Scripts.Filter.Data;
 
-namespace _Scripts.Filter.Classes
+namespace Essential.Animation.Curve.Modifiers.Filter.Classes
 {
 	/// <summary>
 	/// Modulates 2-dimensional data.

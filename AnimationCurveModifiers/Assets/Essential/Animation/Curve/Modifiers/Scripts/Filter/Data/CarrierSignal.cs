@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.Filter.Data
+namespace Essential.Animation.Curve.Modifiers.Filter.Data
 {
     /// <inheritdoc />
     /// <summary>

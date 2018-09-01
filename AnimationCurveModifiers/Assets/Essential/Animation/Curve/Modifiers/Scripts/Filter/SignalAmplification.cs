@@ -1,6 +1,6 @@
-﻿using _Scripts.Filter.Data;
+﻿using Essential.Animation.Curve.Modifiers.Filter.Data;
 
-namespace _Scripts.Filter
+namespace Essential.Animation.Curve.Modifiers.Filter
 {
     public class SignalAmplification : CarrierSignal
     {

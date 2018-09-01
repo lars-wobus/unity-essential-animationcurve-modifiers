@@ -1,16 +1,9 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using UnityEngine;
-using _Scripts.Filter.Data;
-using System.Reflection;
-using System.Linq;
-using UnityEngine.UI;
+﻿using System.Linq;
 using Essential.Core.Extensions;
+using UnityEditor;
+using UnityEngine;
 
-namespace _Scripts.Filter
+namespace Essential.Animation.Curve.Modifiers.Filter.Editor
 {
     public class InvertWindow : AnimationCurveModifier//EditorWindow
     {

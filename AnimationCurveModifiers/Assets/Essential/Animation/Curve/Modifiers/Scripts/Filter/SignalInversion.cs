@@ -1,10 +1,8 @@
-﻿using System;
-using UnityEngine;
-using _Scripts.Filter.Data;
+﻿using System.Linq;
 using System.Reflection;
-using System.Linq;
+using UnityEngine;
 
-namespace _Scripts.Filter
+namespace Essential.Animation.Curve.Modifiers.Filter
 {
     [ExecuteInEditMode]
     public class SignalInversion : MonoBehaviour

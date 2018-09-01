@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using _Scripts.Filter.Classes;
+﻿using Essential.Animation.Curve.Modifiers.Filter.Classes;
+using UnityEngine;
 
-namespace _Scripts.Filter
+namespace Essential.Animation.Curve.Modifiers.Filter
 {
 	public class FilterVector3 : MonoBehaviour
 	{
