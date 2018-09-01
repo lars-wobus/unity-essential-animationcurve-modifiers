@@ -67,7 +67,8 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             var isValid = DisplayInputFields();
             var fields = GetFields();
             var names = GetFieldNames(fields);
-            DisplayField(!isValid, names);
+            DisplayPrimaryInputFields(!isValid, names);
+            DisplaySecondaryInputFields(!isValid);
             
             EditorGUILayout.Space();
             DisplayHeader(InvertWindow_2ndHeader);
@@ -126,16 +127,27 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
 
             return true;
         }
+
+        /// <summary>
+        /// Display 1 field to select AnimationCurve from selected target script.
+        /// </summary>
+        /// <param name="disabled">Hide fields on true. Show fields on false.</param>
+        /// <param name="names">Field names belonging to AnimationCurves in target script.</param>
+        private void DisplayPrimaryInputFields(bool disabled, string[] names)
+        {
+            EditorGUI.BeginDisabledGroup(disabled);
+            DropDownIndex = EditorGUILayout.Popup("Field", DropDownIndex, names ?? new string[0]);
+            EditorGUI.EndDisabledGroup();
+            
+        }
         
         /// <summary>
         /// Display 3 fields to adjust the outcome.
         /// </summary>
         /// <param name="disabled">Hide fields on true. Show fields on false.</param>
-        /// <param name="names">List of fields in target script pointing to an AnimationCurve.</param>
-        private void DisplayField(bool disabled, string[] names)
+        private void DisplaySecondaryInputFields(bool disabled)
         {
             EditorGUI.BeginDisabledGroup(disabled);
-            DropDownIndex = EditorGUILayout.Popup("Field", DropDownIndex, names);
             KeepCurveInPlace = EditorGUILayout.Toggle("Keep Curve in Place", KeepCurveInPlace);
             Normalize = EditorGUILayout.Toggle("Normalize", Normalize);
             EditorGUI.EndDisabledGroup();
