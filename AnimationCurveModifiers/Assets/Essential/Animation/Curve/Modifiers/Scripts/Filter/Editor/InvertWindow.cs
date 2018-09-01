@@ -5,30 +5,59 @@ using UnityEngine;
 
 namespace Essential.Animation.Curve.Modifiers.Filter.Editor
 {
+    /// <summary>
+    /// Window to mirror selected AnimationCurve in X, Y or both axes.
+    /// </summary>
     public class InvertWindow : AnimationCurveModifier
     {
+        private const string MenuItemName = "Window/Animation Curve/Inverter";
+        
+        /// <summary>
+        /// Reflection across the X-axis.
+        /// </summary>
         private AnimationCurve InversionByX { get; set; }
+        
+        /// <summary>
+        /// Reflection across the Y-axis.
+        /// </summary>
         private AnimationCurve InversionByY { get; set; }
+        
+        /// <summary>
+        /// Reflection across the X- and Y-axes.
+        /// </summary>
         private AnimationCurve InversionByXy { get; set; }
         
+        /// <summary>
+        /// When flag is enabled, reflections will take up the same X-range as the original.
+        /// </summary>
         private bool KeepCurveInPlace { get; set; }
+        
+        /// <summary>
+        /// When flag is enabled, all keys of reflections will be remapped between 0 and 1.  
+        /// </summary>
         private bool Normalize { get; set; }
         
-        [MenuItem("Window/Animation Curve/Inverter")]
+        /// <summary>
+        /// Add window under Window menu.
+        /// </summary>
+        [MenuItem(MenuItemName)]
         private static void Init()
         {
             var window = (InvertWindow)GetWindow(typeof(InvertWindow));
             window.Show();
         }
 
+        /// <inheritdoc cref="EditorWindow.OnEnable"/>
         private void OnEnable()
         {
-            Debug.Log("OnEnable");
             InversionByX = new AnimationCurve();
             InversionByY = new AnimationCurve();
             InversionByXy = new AnimationCurve();
         }
 
+        /// <summary>
+        /// Populate window.
+        /// </summary>
         private void OnGUI()
         {
             EditorGUILayout.Space();
@@ -72,6 +101,10 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             DisplayOutputFields(!isValid);
         }
 
+        /// <summary>
+        /// Display component field used to select target script.
+        /// </summary>
+        /// <returns>True when field is filled. False when field is empty.</returns>
         private bool DisplayInputFields()
         {
             Component = (Component) EditorGUILayout.ObjectField("Script", Component, typeof(Component), true);
@@ -91,6 +124,11 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             return true;
         }
         
+        /// <summary>
+        /// Display 3 fields to adjust the outcome.
+        /// </summary>
+        /// <param name="disabled">Hide fields on true. Show fields on false.</param>
+        /// <param name="names">List of fields in target script pointing to an AnimationCurve.</param>
         private void DisplayField(bool disabled, string[] names)
         {
             EditorGUI.BeginDisabledGroup(disabled);
@@ -100,6 +138,10 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             EditorGUI.EndDisabledGroup();
         }
         
+        /// <summary>
+        /// Display 3 reflected AnimationCurves based on selected AnimationCurve.
+        /// </summary>
+        /// <param name="disabled">Hide fields on true. Show fields on false.</param>
         private void DisplayOutputFields(bool disabled)
         {
             EditorGUI.BeginDisabledGroup(disabled);
