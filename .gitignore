@@ -44,5 +44,6 @@ sysinfo.txt
 *.unitypackage
 
 # Ignore linked submodules
-AnimationCurveModifiers/Assets/essential.core/* 
-!AnimationCurveModifiers/Assets/essential.core/.keep
+
+AnimationCurveModifiers/Assets/Essential/Core/* 
+!AnimationCurveModifiers/Assets/Essential/Core/.keep 
