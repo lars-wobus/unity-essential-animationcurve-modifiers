@@ -5,11 +5,25 @@ using UnityEngine;
 
 namespace Essential.Animation.Curve.Modifiers.Filter.Editor
 {
+    /// <summary>
+    /// Base class for all AnimationCurve modifiers. 
+    /// </summary>
     public abstract class AnimationCurveModifierBase : EditorWindow
     {
+        /// <summary>
+        /// Property to keep selected target script.
+        /// </summary>
         protected Component Component { get; set; }
+        
+        /// <summary>
+        /// Property to keep index of selected AnimationCurve.
+        /// </summary>
         protected int DropDownIndex { get; set; }
         
+        /// <summary>
+        /// Add section header to window.
+        /// </summary>
+        /// <param name="text">Header name</param>
         protected void DisplayHeader(string text)
         {
             EditorGUI.indentLevel = 0;
@@ -17,6 +31,10 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             EditorGUI.indentLevel = 1;
         }
         
+        /// <summary>
+        /// Get FieldInfos pointing to AnimationCurves
+        /// </summary>
+        /// <returns>Array of FieldInfo</returns>
         protected FieldInfo[] GetFields()
         {
             if (Component == null)
@@ -35,11 +53,21 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             return array;
         }
         
+        /// <summary>
+        /// Extract array of field names from array of FieldInfo.
+        /// </summary>
+        /// <param name="fieldInfos">Array of FieldInfo</param>
+        /// <returns>Array of field names</returns>
         protected string[] GetFieldNames(FieldInfo[] fieldInfos)
         {
             return fieldInfos == null ? null : fieldInfos.Select((element) => element.Name).ToArray();
         }
         
+        /// <summary>
+        /// Filter array of FieldInfo for AnimationCurves.
+        /// </summary>
+        /// <param name="fieldInfos"></param>
+        /// <returns>Subset of input array</returns>
         private FieldInfo[] FilterArrayForAnimationCurves(FieldInfo[] fieldInfos)
         {
             return fieldInfos.Where(element =>
@@ -49,6 +77,11 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
             }).ToArray();
         }
         
+        /// <summary>
+        /// Returns an array of FieldInfo objects that correspond to all fields of the current class.
+        /// </summary>
+        /// <param name="componentType">Type of component</param>
+        /// <returns>Array of FieldInfo</returns>
         private FieldInfo[] GetAllFieldsForComponentType(IReflect componentType)
         {
             return componentType.GetFields(BindingFlags.NonPublic | 
