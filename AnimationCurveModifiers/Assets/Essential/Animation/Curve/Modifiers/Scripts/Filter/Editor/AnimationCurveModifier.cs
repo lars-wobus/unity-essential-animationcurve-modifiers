@@ -19,13 +19,17 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
         
         protected FieldInfo[] GetFields()
         {
+            if (Component == null)
+            {
+                return null;
+            }
+            
             var fieldInfos = GetAllFieldsForComponentType(Component.GetType());
             var array = FilterArrayForAnimationCurves(fieldInfos);
 
             if (array.Length == 0)
             {
                 EditorGUILayout.HelpBox("Selected component does not have any fields for AnimationCurves.", MessageType.Warning);
-                // return;
             }
 
             return array;
