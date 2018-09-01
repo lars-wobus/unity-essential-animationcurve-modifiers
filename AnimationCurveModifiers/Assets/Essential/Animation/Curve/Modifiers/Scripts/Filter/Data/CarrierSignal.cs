@@ -27,6 +27,11 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Data
             }
         }
         
+        /// <summary>
+        /// Evaluate the curve at time.
+        /// </summary>
+        /// <param name="time">Function argument X</param>
+        /// <returns>Function value Y</returns>
         public float Evaluate(float time)
         {
             return AnimationCurve.Evaluate(time);
