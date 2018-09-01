@@ -1,0 +1,3 @@
+[submodule "submodules/unity-essential-core"]
+	path = submodules/unity-essential-core
+	url = https://github.com/lars-wobus/unity-essential-core
