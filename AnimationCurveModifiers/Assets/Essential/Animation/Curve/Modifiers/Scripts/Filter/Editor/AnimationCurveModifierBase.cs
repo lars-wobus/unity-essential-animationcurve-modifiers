@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Essential.Animation.Curve.Modifiers.Filter.Editor
 {
-    public abstract class AnimationCurveModifier : EditorWindow
+    public abstract class AnimationCurveModifierBase : EditorWindow
     {
         protected Component Component { get; set; }
         protected int DropDownIndex { get; set; }

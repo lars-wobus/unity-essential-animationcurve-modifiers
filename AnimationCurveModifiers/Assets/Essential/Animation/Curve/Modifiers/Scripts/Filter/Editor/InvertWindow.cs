@@ -8,7 +8,7 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
     /// <summary>
     /// Window to mirror selected AnimationCurve in X, Y or both axes.
     /// </summary>
-    public class InvertWindow : AnimationCurveModifier
+    public class InvertWindow : AnimationCurveModifierBase
     {
         private const string MenuItemName = "Window/Animation Curve/Inverter";
         private static string InvertWindow_1stHeader = "Input";
