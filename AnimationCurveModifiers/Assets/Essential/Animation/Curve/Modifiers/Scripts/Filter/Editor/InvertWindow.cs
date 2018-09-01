@@ -11,6 +11,8 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
     public class InvertWindow : AnimationCurveModifier
     {
         private const string MenuItemName = "Window/Animation Curve/Inverter";
+        private static string InvertWindow_1stHeader = "Input";
+        private static string InvertWindow_2ndHeader = "Output";
         
         /// <summary>
         /// Reflection across the X-axis.
@@ -61,14 +63,14 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
         private void OnGUI()
         {
             EditorGUILayout.Space();
-            DisplayHeader("Input");
+            DisplayHeader(InvertWindow_1stHeader);
             var isValid = DisplayInputFields();
             var fields = GetFields();
             var names = GetFieldNames(fields);
             DisplayField(!isValid, names);
             
             EditorGUILayout.Space();
-            DisplayHeader("Output");
+            DisplayHeader(InvertWindow_2ndHeader);
             if (isValid)
             {
                 var animationCurve = fields[DropDownIndex].GetValue(Component) as AnimationCurve;
@@ -83,22 +85,23 @@ namespace Essential.Animation.Curve.Modifiers.Filter.Editor
                     {
                         var bMin = keys.First().time;
                         var bMax = keys.Last().time;
-                        InversionByX.keys = InversionByX.keys.RemapTimes(bMin, bMax);
-                        InversionByY.keys = InversionByY.keys.RemapTimes(bMin, bMax);
-                        InversionByXy.keys = InversionByXy.keys.RemapTimes(bMin, bMax);
+                        RemapOutputCurves(bMin, bMax);
                     }
 
                     if (Normalize)
                     {
-                        var bMin = 0;
-                        var bMax = 1;
-                        InversionByX.keys = InversionByX.keys.RemapTimes(bMin, bMax);
-                        InversionByY.keys = InversionByY.keys.RemapTimes(bMin, bMax);
-                        InversionByXy.keys = InversionByXy.keys.RemapTimes(bMin, bMax);
+                        RemapOutputCurves(0, 1);
                     }
                 }
             }
             DisplayOutputFields(!isValid);
+        }
+
+        private void RemapOutputCurves(float bMin, float bMax)
+        {
+            InversionByX.keys = InversionByX.keys.RemapTimes(bMin, bMax);
+            InversionByY.keys = InversionByY.keys.RemapTimes(bMin, bMax);
+            InversionByXy.keys = InversionByXy.keys.RemapTimes(bMin, bMax);
         }
 
         /// <summary>
